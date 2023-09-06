@@ -27,7 +27,6 @@ class AddressFactory implements AddressFactoryInterface
      * @param int $id
      * @param int $userId
      * @param string $group
-     * @param bool $defaultAddress
      * @param string $salutation
      * @param string $name
      * @param string $firstname
@@ -57,7 +56,6 @@ class AddressFactory implements AddressFactoryInterface
         int $id = 0,
         int $userId = 0,
         string $group = '',
-        bool $defaultAddress = false,
         string $salutation = '',
         string $name = '',
         string $firstname = '',
@@ -83,18 +81,13 @@ class AddressFactory implements AddressFactoryInterface
         bool $selectable = false,    
     ): AddressInterface {
         
-        if ($defaultAddress) {
-            $key = 'default';
-        } else {
-            $key = $key ?: $group.(string)$id;
-        }
+        $key = $key ?: $group.(string)$id;
         
         return new Address(
             key: $key,
             id: $id,
             userId: $userId,
             group: $group,
-            defaultAddress: $defaultAddress,
             salutation: $salutation,
             name: $name,
             firstname: $firstname,
@@ -137,7 +130,6 @@ class AddressFactory implements AddressFactoryInterface
             id: $address->get('id', 0),
             userId: $address->get('user_id', 0),
             group: $address->get('group', ''),
-            defaultAddress: $address->get('default_address', false),
             salutation: $address->get('salutation', ''),
             name: $address->get('name', ''),
             firstname: $address->get('firstname', ''),

@@ -99,7 +99,7 @@ class AddressableTest extends TestCase
             $address
         );
         
-        $this->assertSame('default', $address->key());
+        $this->assertSame('primary', $address->key());
         
         $this->assertSame('John', $user->address('payment')->firstname());  
     }    

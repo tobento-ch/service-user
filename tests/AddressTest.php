@@ -37,7 +37,6 @@ class AddressTest extends TestCase
             id: 1,
             userId: 20,
             group: 'shop',
-            defaultAddress: false,
             salutation: 'mr',
             name: 'Adam Smith',
             firstname: 'Adam',
@@ -67,7 +66,7 @@ class AddressTest extends TestCase
         $this->assertSame(1, $address->id());
         $this->assertSame(20, $address->userId());
         $this->assertSame('shop', $address->group());
-        $this->assertSame(false, $address->isDefaultAddress());
+        $this->assertSame(false, $address->isPrimary());
         $this->assertSame('mr', $address->salutation());
         $this->assertSame('Adam Smith', $address->name());
         $this->assertSame('Adam', $address->firstname());
@@ -205,6 +204,12 @@ class AddressTest extends TestCase
         );        
     }
     
+    public function testIsPrimaryMethod()
+    {
+        $this->assertTrue((new Address(key: 'primary'))->isPrimary());
+        $this->assertFalse((new Address(key: 'payment'))->isPrimary());
+    }
+    
     public function testWithGroupMethod()
     {
         $address = new Address(key: 'payment');
@@ -212,15 +217,6 @@ class AddressTest extends TestCase
         
         $this->assertFalse($address === $addressNew);
         $this->assertSame('name', $addressNew->group());
-    }
-    
-    public function testWithDefaultAddressMethod()
-    {
-        $address = new Address(key: 'payment');
-        $addressNew = $address->withDefaultAddress(true);
-        
-        $this->assertFalse($address === $addressNew);
-        $this->assertSame(true, $addressNew->isDefaultAddress());
     }
     
     public function testWithSalutationMethod()

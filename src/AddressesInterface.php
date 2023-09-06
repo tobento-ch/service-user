@@ -31,20 +31,20 @@ interface AddressesInterface extends IteratorAggregate, Arrayable
     /**
      * If the address exist by the specified key.
      *
-     * @param string $key The address key such as 'default', 'shipping' e.g.
+     * @param string $key The address key such as 'primary', 'shipping' e.g.
      * @param array $with Checks if any parameters such as 'firstname' is set, if one is not set, the address does not exist.
      * @return bool True if address exist, otherwise false.
      */
-    public function has(string $key = 'default', array $with = []): bool;
+    public function has(string $key = 'primary', array $with = []): bool;
     
     /**
      * Returns the address by key.
      * If must create a new address if it does not exist.
      *
-     * @param string The address key such as 'default', 'shipping' e.g.
+     * @param string The address key such as 'primary', 'shipping' e.g.
      * @return AddressInterface
      */
-    public function get(string $key = 'default'): AddressInterface;
+    public function get(string $key = 'primary'): AddressInterface;
 
     /**
      * Adds address(es).
@@ -73,7 +73,7 @@ interface AddressesInterface extends IteratorAggregate, Arrayable
     /**
      * Deletes an address.
      *
-     * @param string $key The address key such as 'default', 'shipping' e.g.
+     * @param string $key The address key such as 'primary', 'shipping' e.g.
      * @return static $this
      */
     public function delete(string $key): static;

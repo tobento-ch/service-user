@@ -26,6 +26,13 @@ interface AddressInterface extends Arrayable
      * @return string
      */
     public function key(): string;
+    
+    /**
+     * If it is the primary address.
+     *
+     * @return bool
+     */
+    public function isPrimary(): bool;
 
     /**
      * Returns the id.
@@ -55,21 +62,6 @@ interface AddressInterface extends Arrayable
      * @return static
      */
     public function withGroup(string $group): static;
-        
-    /**
-     * If it is the default address.
-     *
-     * @return bool
-     */
-    public function isDefaultAddress(): bool;
-
-    /**
-     * Returns a new instance with the specified value given.
-     *
-     * @param bool $isDefaultAddress
-     * @return static
-     */
-    public function withDefaultAddress(bool $isDefaultAddress): static;
     
     /**
      * Returns the salutation.

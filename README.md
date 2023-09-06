@@ -261,7 +261,6 @@ $address = $addressFactory->createAddress(
     id: 0,
     userId: 0,
     group: '',
-    defaultAddress: false,
     salutation: 'mr',
     name: '',
     firstname: 'Adam',
@@ -318,6 +317,9 @@ var_dump($address instanceof AddressInterface);
 var_dump($address->key());
 // string(8) "shipping"
 
+var_dump($address->isPrimary());
+// bool(false)
+
 var_dump($address->id());
 // int(0)
 
@@ -326,9 +328,6 @@ var_dump($address->userId());
 
 var_dump($address->group());
 // string(0) ""
-
-var_dump($address->isDefaultAddress());
-// bool(false)
 
 var_dump($address->salutation());
 // string(0) ""
@@ -433,8 +432,6 @@ $addressFactory = new AddressFactory();
 $address = $addressFactory->createAddress(key: 'shipping');
 
 $address = $address->withGroup('addressbook');
-
-$address = $address->withDefaultAddress(false);
 
 $address = $address->withSalutation('mr');
 
@@ -767,7 +764,7 @@ use Tobento\Service\User\AddressInterface;
 
 $user = new User(username: 'username');
 
-// returns default address
+// returns primary address
 var_dump($user->address() instanceof AddressInterface);
 // bool(true)
 

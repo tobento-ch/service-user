@@ -25,7 +25,6 @@ interface AddressFactoryInterface
      * @param int $id
      * @param int $userId
      * @param string $group
-     * @param bool $defaultAddress
      * @param string $salutation
      * @param string $name
      * @param string $firstname
@@ -55,7 +54,6 @@ interface AddressFactoryInterface
         int $id = 0,
         int $userId = 0,
         string $group = '',
-        bool $defaultAddress = false,
         string $salutation = '',
         string $name = '',
         string $firstname = '',

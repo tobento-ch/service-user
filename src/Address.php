@@ -37,7 +37,6 @@ class Address implements AddressInterface, Arrayable
      * @param int $id
      * @param int $userId
      * @param string $group
-     * @param bool $defaultAddress
      * @param string $salutation
      * @param string $name
      * @param string $firstname
@@ -67,7 +66,6 @@ class Address implements AddressInterface, Arrayable
         protected int $id = 0,
         protected int $userId = 0,
         protected string $group = '',
-        protected bool $defaultAddress = false,
         protected string $salutation = '',
         protected string $name = '',
         protected string $firstname = '',
@@ -101,6 +99,16 @@ class Address implements AddressInterface, Arrayable
     public function key(): string
     {
         return $this->key;
+    }
+    
+    /**
+     * If it is the primary address.
+     *
+     * @return bool
+     */
+    public function isPrimary(): bool
+    {
+        return $this->key() === 'primary';
     }
 
     /**
@@ -143,29 +151,6 @@ class Address implements AddressInterface, Arrayable
     {
         $new = clone $this;
         $new->group = $group;
-        return $new;
-    }
-        
-    /**
-     * If it is the default address.
-     *
-     * @return bool
-     */
-    public function isDefaultAddress(): bool
-    {
-        return $this->defaultAddress;
-    }
-
-    /**
-     * Returns a new instance with the specified value given.
-     *
-     * @param bool $isDefaultAddress
-     * @return static
-     */
-    public function withDefaultAddress(bool $isDefaultAddress): static
-    {
-        $new = clone $this;
-        $new->defaultAddress = $isDefaultAddress;
         return $new;
     }
     
@@ -832,7 +817,6 @@ class Address implements AddressInterface, Arrayable
             'key' => $this->key(),
             'group' => $this->group(),
             'user_id' => $this->userId(),
-            'default_address' => $this->isDefaultAddress(),
             'salutation' => $this->salutation(),
             'name' => $this->name(),
             'firstname' => $this->firstname(),
@@ -855,6 +839,7 @@ class Address implements AddressInterface, Arrayable
             'birthday' => $this->birthday(),
             'notice' => $this->notice(),
             'info' => $this->info(),
+            'primary' => $this->isPrimary(),
             'selectable' => $this->selectable()
         ];
     }

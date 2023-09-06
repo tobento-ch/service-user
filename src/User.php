@@ -250,11 +250,11 @@ class User implements UserInterface, Addressable, Arrayable
             return $this->greeting;
         }
         
-        $defaultAddress = $this->address();
+        $primaryAddress = $this->address();
         
-        if (!empty($defaultAddress->greeting())) {
-            $this->greetingSalutation = $defaultAddress->greetingSalutation();
-            return $this->greeting = $defaultAddress->greeting();
+        if (!empty($primaryAddress->greeting())) {
+            $this->greetingSalutation = $primaryAddress->greetingSalutation();
+            return $this->greeting = $primaryAddress->greeting();
         }
         
         $this->greetingSalutation = 'greet';
