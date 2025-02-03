@@ -298,7 +298,7 @@ class User implements UserInterface, Addressable, Arrayable
             'username' => $this->username(),
             'email' => $this->email(),
             'smartphone' => $this->smartphone(),
-            'language_key' => $this->locale(),
+            'locale' => $this->locale(),
             'birthday' => $this->birthday(),
             'date_created' => $this->dateCreated(),
             'date_updated' => $this->dateUpdated(),
