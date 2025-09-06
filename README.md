@@ -21,6 +21,8 @@ A user and address interface for PHP applications.
         - [Addresses Factory](#addresses-factory)
         - [Addresses Interface](#addresses-interface)
     - [Addressable](#addressable)
+    - [Address Aware Interface](#address-aware-interface)
+    - [User Aware Interface](#user-aware-interface)
 - [Credits](#credits)
 ___
 
@@ -790,6 +792,54 @@ var_dump($user->hasAddress(
 // bool(false)
 ```
 
+## Address Aware Interface
+
+```php
+use Tobento\Service\User\AddressAwareInterface;
+use Tobento\Service\User\AddressInterface;
+
+interface AddressAwareInterface
+{
+    /**
+     * Create an address that represents the object.
+     *
+     * @return AddressInterface
+     */
+    public function toAddress(): AddressInterface;
+}
+```
+
+The user has implemented the interface returning the ```primary``` address:
+
+```php
+use Tobento\Service\User\AddressAwareInterface;
+use Tobento\Service\User\User;
+
+$user = new User(username: 'username');
+
+var_dump($user instanceof AddressAwareInterface);
+// bool(true)
+
+var_dump($user->toAddress()->key());
+// string(7) "primary"
+```
+
+## User Aware Interface
+
+```php
+use Tobento\Service\User\UserAwareInterface;
+use Tobento\Service\User\UserInterface;
+
+interface UserAwareInterface
+{
+    /**
+     * Create an user that represents the object.
+     *
+     * @return UserInterface
+     */
+    public function toUser(): UserInterface;
+}
+```
 
 # Credits
 
