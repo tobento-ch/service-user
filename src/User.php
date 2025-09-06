@@ -18,7 +18,7 @@ use Tobento\Service\Support\Arrayable;
 /**
  * User
  */
-class User implements UserInterface, Addressable, Arrayable
+class User implements UserInterface, Addressable, Arrayable, AddressAwareInterface
 {
     use HasAddresses;
 
@@ -307,5 +307,15 @@ class User implements UserInterface, Addressable, Arrayable
             'newsletter' => $this->newsletter(),
             'addresses' => $this->addresses()->toArray(),
         ];
+    }
+    
+    /**
+     * Create an address that represents the object.
+     *
+     * @return AddressInterface
+     */
+    public function toAddress(): AddressInterface
+    {
+        return $this->address();
     }
 }
