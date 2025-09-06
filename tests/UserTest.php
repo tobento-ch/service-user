@@ -17,12 +17,10 @@ use PHPUnit\Framework\TestCase;
 use Tobento\Service\User\User;
 use Tobento\Service\User\UserInterface;
 use Tobento\Service\User\Addressable;
+use Tobento\Service\User\AddressAwareInterface;
 use Tobento\Service\User\Addresses;
 use Tobento\Service\User\AddressesInterface;
 
-/**
- * UserTest
- */
 class UserTest extends TestCase
 {
     public function testThatImplementsUserInterface()
@@ -37,6 +35,11 @@ class UserTest extends TestCase
     {
         $this->assertInstanceof(
             Addressable::class,
+            new User(username: 'username')
+        );
+        
+        $this->assertInstanceof(
+            AddressAwareInterface::class,
             new User(username: 'username')
         );
     }
@@ -104,5 +107,10 @@ class UserTest extends TestCase
         $guest->sync($user);
         
         $this->assertSame(['shipping', 'payment'], array_keys($guest->addresses()->all()));
+    }
+    
+    public function testToAddressMethod()
+    {
+        $this->assertSame('primary', (new User())->toAddress()->key());
     }
 }
