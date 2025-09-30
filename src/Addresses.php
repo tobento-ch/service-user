@@ -111,7 +111,7 @@ class Addresses implements AddressesInterface, Arrayable
     /**
      * Adds address(es).
      *
-     * @param AddressInterface ...$address
+     * @param AddressInterface ...$addresses
      * @return static $this
      */
     public function add(AddressInterface ...$addresses): static
@@ -199,7 +199,7 @@ class Addresses implements AddressesInterface, Arrayable
     /**
      * Get the iterator. 
      *
-     * @return Traversable
+     * @return Traversable<string, AddressInterface>
      */
     public function getIterator(): Traversable
     {    

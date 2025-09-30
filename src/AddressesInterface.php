@@ -17,7 +17,7 @@ use Tobento\Service\Support\Arrayable;
 use IteratorAggregate;
 
 /**
- * AddressesInterface
+ * @extends IteratorAggregate<string, AddressInterface>
  */
 interface AddressesInterface extends IteratorAggregate, Arrayable
 {
@@ -49,7 +49,7 @@ interface AddressesInterface extends IteratorAggregate, Arrayable
     /**
      * Adds address(es).
      *
-     * @param AddressInterface ...$address
+     * @param AddressInterface ...$addresses
      * @return static $this
      */
     public function add(AddressInterface ...$addresses): static;
