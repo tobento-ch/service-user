@@ -36,7 +36,7 @@ composer require tobento/service-user
 
 ## Requirements
 
-- PHP 8.0 or greater
+- PHP 8.4 or greater
 
 ## Highlights
 
@@ -547,7 +547,7 @@ var_dump($addresses instanceof AddressesInterface);
 use Tobento\Service\User\AddressesFactory;
 use Tobento\Service\User\Address;
 
-$addresses = (new AddressesFactory())->createAddressesFromArray([
+$addresses = new AddressesFactory()->createAddressesFromArray([
     ['key' => 'payment'],
     new Address(key: 'shipping'),
 ]);
@@ -559,7 +559,7 @@ $addresses = (new AddressesFactory())->createAddressesFromArray([
 use Tobento\Service\User\AddressesFactory;
 use Tobento\Service\User\AddressesInterface;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 var_dump($addresses instanceof AddressesInterface);
 // bool(true)
@@ -571,7 +571,7 @@ var_dump($addresses instanceof AddressesInterface);
 use Tobento\Service\User\AddressesFactory;
 use Tobento\Service\User\AddressFactoryInterface;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 var_dump($addresses->addressFactory() instanceof AddressFactoryInterface);
 // bool(true)
@@ -585,7 +585,7 @@ The get method returns the address by the specified key. If the address does not
 use Tobento\Service\User\AddressesFactory;
 use Tobento\Service\User\AddressInterface;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 $address = $addresses->get(key: 'payment');
 
@@ -598,7 +598,7 @@ var_dump($address instanceof AddressInterface);
 ```php
 use Tobento\Service\User\AddressesFactory;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 $address = $addresses->addressFactory()->createAddress(key: 'payment');
 
@@ -613,7 +613,7 @@ The create method creates an address with the specified parameters, but does it 
 use Tobento\Service\User\AddressesFactory;
 use Tobento\Service\User\AddressInterface;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 $address = $addresses->create(['key' => 'payment']);
 
@@ -632,7 +632,7 @@ The address method creates an address and adds it to the addresses.
 use Tobento\Service\User\AddressesFactory;
 use Tobento\Service\User\AddressInterface;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 $address = $addresses->address(['key' => 'payment']);
 
@@ -647,7 +647,7 @@ Check if an address exists.
 ```php
 use Tobento\Service\User\AddressesFactory;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 var_dump($addresses->has(key: 'payment'));
 // bool(false)
@@ -676,7 +676,7 @@ var_dump($addresses->has(
 ```php
 use Tobento\Service\User\AddressesFactory;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 $addresses->delete(key: 'payment');
 ```
@@ -687,7 +687,7 @@ $addresses->delete(key: 'payment');
 use Tobento\Service\User\AddressesFactory;
 use Tobento\Service\User\AddressInterface;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 $addresses->address(['key' => 'payment']);
 
@@ -711,7 +711,7 @@ You might filter addresses returning a new instance.
 use Tobento\Service\User\AddressesFactory;
 use Tobento\Service\User\AddressInterface;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 $addresses = $addresses->filter(
     fn(AddressInterface $a): bool => $a->countryKey() === 'CH'
@@ -725,7 +725,7 @@ The group method filters addresses by the specified group.
 ```php
 use Tobento\Service\User\AddressesFactory;
 
-$addresses = (new AddressesFactory())->createAddresses();
+$addresses = new AddressesFactory()->createAddresses();
 
 $addresses = $addresses->group('addressbook');
 ```
