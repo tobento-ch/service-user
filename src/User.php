@@ -18,7 +18,7 @@ use Tobento\Service\Support\Arrayable;
 /**
  * User
  */
-class User implements UserInterface, Addressable, Arrayable, AddressAwareInterface
+class User implements UserInterface, Addressable, Arrayable
 {
     use HasAddresses;
 
