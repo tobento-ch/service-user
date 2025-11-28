@@ -18,7 +18,7 @@ use Tobento\Service\Support\Arrayable;
 /**
  * UserInterface
  */
-interface UserInterface extends Arrayable
+interface UserInterface extends Arrayable, AddressAwareInterface
 {
     /**
      * Returns the id.
