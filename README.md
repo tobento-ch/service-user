@@ -116,6 +116,7 @@ $user = $userFactory->createUser(
     dateLastVisited: '',
     image: [],
     newsletter: false,
+    meta: [],
     addresses: null, // null|AddressesInterface
 );
 ```
@@ -208,6 +209,12 @@ var_dump($user->image());
 var_dump($user->newsletter());
 // bool(false)
 
+var_dump($user->getMeta());
+// array(0) { }
+
+var_dump($user->meta(key: 'key', default: 'default'));
+// NULL
+
 var_dump($user->greetingSalutation());
 // string(5) "greet"
 
@@ -286,6 +293,7 @@ $address = $addressFactory->createAddress(
     notice: '',
     info: '',
     selectable: false,
+    meta: [],
 );
 ```
 
@@ -415,6 +423,12 @@ var_dump($address->info());
 var_dump($address->selectable());
 // bool(false)
 
+var_dump($address->getMeta());
+// array(0) { }
+
+var_dump($address->meta(key: 'key', default: 'default'));
+// NULL
+
 var_dump($address->greetingSalutation());
 // string(5) "greet"
 
@@ -480,6 +494,8 @@ $address = $address->withNotice('Some message');
 $address = $address->withInfo('Some message');
 
 $address = $address->withSelectable(false);
+
+$address = $address->withMeta(['key' => 'value']);
 
 $address = $address->withGreeting(
     greeting: 'John Smith',
