@@ -53,6 +53,7 @@ class UserFactoryTest extends TestCase
             'dateLastVisited' => '2021-08-23 13:20:34',
             'image' => ['src' => 'image.jpg'],
             'newsletter' => true,
+            'meta' => ['key' => 'value'],
             'addresses' => null,
         ];
         
@@ -84,6 +85,7 @@ class UserFactoryTest extends TestCase
             'dateLastVisited' => '2021-08-23 13:20:34',
             'image' => ['src' => 'image.jpg'],
             'newsletter' => true,
+            'meta' => ['key' => 'value'],
             'addresses' => null,
         ];
         

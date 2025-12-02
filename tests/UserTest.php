@@ -64,6 +64,7 @@ class UserTest extends TestCase
             dateLastVisited: '2021-08-23 13:20:34',
             image: ['src' => 'image.jpg'],
             newsletter: true,
+            meta: ['key' => 'value'],
             addresses: $addresses, // null|AddressesInterface
         );
         
@@ -81,6 +82,7 @@ class UserTest extends TestCase
         $this->assertSame('2021-08-23 13:20:34', $user->dateLastVisited());
         $this->assertSame(['src' => 'image.jpg'], $user->image());
         $this->assertSame(true, $user->newsletter());
+        $this->assertSame(['key' => 'value'], $user->getMeta());
         $this->assertSame('greet', $user->greetingSalutation());
         $this->assertSame('user123', $user->greeting());
         $this->assertSame($addresses, $user->addresses());    
@@ -112,5 +114,13 @@ class UserTest extends TestCase
     public function testToAddressMethod()
     {
         $this->assertSame('primary', (new User())->toAddress()->key());
+    }
+    
+    public function testMetaMethod()
+    {
+        $user = new User(meta: ['key' => 'value']);
+        $this->assertSame('value', $user->meta(key: 'key'));
+        $this->assertSame(null, $user->meta(key: 'foo'));
+        $this->assertSame('default', $user->meta(key: 'foo', default: 'default'));
     }
 }

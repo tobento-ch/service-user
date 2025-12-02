@@ -60,6 +60,7 @@ class AddressTest extends TestCase
             notice: 'Notice message',
             info: 'Info message',
             selectable: true,
+            meta: ['key' => 'value'],
         );
         
         $this->assertSame('payment', $address->key());
@@ -90,6 +91,7 @@ class AddressTest extends TestCase
         $this->assertSame('Notice message', $address->notice());
         $this->assertSame('Info message', $address->info());
         $this->assertSame(true, $address->selectable());
+        $this->assertSame(['key' => 'value'], $address->getMeta());
     }
     
     public function testFullnameMethods()
@@ -434,5 +436,23 @@ class AddressTest extends TestCase
         $this->assertFalse($address === $addressNew);
         $this->assertSame('mr', $addressNew->greetingSalutation());
         $this->assertSame('John Smith', $addressNew->greeting());
+    }
+    
+    public function testMetaMethod()
+    {
+        $address = new Address(key: 'payment', meta: ['key' => 'value']);
+        $this->assertSame('value', $address->meta(key: 'key'));
+        $this->assertSame(null, $address->meta(key: 'foo'));
+        $this->assertSame('default', $address->meta(key: 'foo', default: 'default'));
+    }
+    
+    public function testWithMetaMethod()
+    {
+        $address = new Address(key: 'payment');
+        $addressNew = $address->withMeta(['key' => 'value']);
+        
+        $this->assertFalse($address === $addressNew);
+        $this->assertSame([], $address->getMeta());
+        $this->assertSame(['key' => 'value'], $addressNew->getMeta());
     }    
 }

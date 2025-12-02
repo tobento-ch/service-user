@@ -63,6 +63,7 @@ class AddressFactoryTest extends TestCase
             'notice' => 'Notice message',
             'info' => 'Info message',
             'selectable' => true,
+            'meta' => ['key' => 'value'],
         ];
         
         $address = $addressFactory->createAddress(...$data);
@@ -105,6 +106,7 @@ class AddressFactoryTest extends TestCase
             'notice' => 'Notice message',
             'info' => 'Info message',
             'selectable' => true,
+            'meta' => ['key' => 'value'],
         ];
         
         $address = $addressFactory->createAddressFromArray($data);
