@@ -468,4 +468,28 @@ interface AddressInterface extends Arrayable
      * @return static
      */
     public function withSelectable(bool $selectable): static;
+    
+    /**
+     * Returns the meta.
+     *
+     * @return array<array-key, mixed>
+     */
+    public function getMeta(): array;
+    
+    /**
+     * Returns the value by key if exists, otherwise the given default value.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function meta(string $key, mixed $default = null): mixed;
+    
+    /**
+     * Returns a new instance with the specified meta.
+     *
+     * @param array<array-key, mixed> $meta
+     * @return static
+     */
+    public function withMeta(array $meta): static;    
 }

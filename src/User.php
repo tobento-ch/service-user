@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Tobento\Service\User;
 
+use Tobento\Service\Collection\Arr;
 use Tobento\Service\Support\Arrayable;
 
 /**
@@ -50,6 +51,7 @@ class User implements UserInterface, Addressable, Arrayable
      * @param string $dateLastVisited
      * @param array $image
      * @param bool $newsletter
+     * @param array<array-key, mixed> $meta
      * @param null|AddressesInterface $addresses
      */
     public function __construct(
@@ -68,6 +70,7 @@ class User implements UserInterface, Addressable, Arrayable
         protected string $dateLastVisited = '',
         protected array $image = [],
         protected bool $newsletter = false,
+        protected array $meta = [],
         null|AddressesInterface $addresses = null,
     ) {
         $this->addresses = $addresses;
@@ -224,6 +227,28 @@ class User implements UserInterface, Addressable, Arrayable
     }
 
     /**
+     * Returns the meta.
+     *
+     * @return array<array-key, mixed>
+     */
+    public function getMeta(): array
+    {
+        return $this->meta;
+    }
+    
+    /**
+     * Returns the value by key if exists, otherwise the given default value.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function meta(string $key, mixed $default = null): mixed
+    {
+        return Arr::get($this->meta, $key, $default);
+    }
+
+    /**
      * Returns the greeting salutation.
      * i.e 'greet', 'greet_ms', 'greet_mr', 'greet_firm', 'greet_family'
      *
@@ -305,6 +330,7 @@ class User implements UserInterface, Addressable, Arrayable
             'date_last_visited' => $this->dateLastVisited(),
             'image' => $this->image(),
             'newsletter' => $this->newsletter(),
+            'meta' => $this->getMeta(),
             'addresses' => $this->addresses()->toArray(),
         ];
     }

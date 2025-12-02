@@ -47,6 +47,7 @@ class UserFactory implements UserFactoryInterface
      * @param string $dateLastVisited
      * @param array $image
      * @param bool $newsletter
+     * @param array $meta
      * @param null|AddressesInterface $addresses
      */
     public function createUser(
@@ -65,6 +66,7 @@ class UserFactory implements UserFactoryInterface
         string $dateLastVisited = '',
         array $image = [],
         bool $newsletter = false,
+        array $meta = [],
         null|AddressesInterface $addresses = null,    
     ): UserInterface {
         
@@ -88,6 +90,7 @@ class UserFactory implements UserFactoryInterface
             dateLastVisited: $dateLastVisited,
             image: $image,
             newsletter: $newsletter,
+            meta: $meta,
             addresses: $addresses,
         );
     }
@@ -129,6 +132,7 @@ class UserFactory implements UserFactoryInterface
             dateLastVisited: $user->get('dateLastVisited', ''),
             image: $user->get('image', []),
             newsletter: $user->get('newsletter', false),
+            meta: $user->get('meta', []),
             addresses: $addresses,
         );
     }

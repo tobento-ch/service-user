@@ -50,6 +50,7 @@ class AddressFactory implements AddressFactoryInterface
      * @param string $notice
      * @param string $info
      * @param bool $selectable
+     * @param array $meta
      */
     public function createAddress(
         string $key,
@@ -78,7 +79,8 @@ class AddressFactory implements AddressFactoryInterface
         string $birthday = '',
         string $notice = '',
         string $info = '',
-        bool $selectable = false,    
+        bool $selectable = false,
+        array $meta = [],
     ): AddressInterface {
         
         $key = $key ?: $group.(string)$id;
@@ -111,6 +113,7 @@ class AddressFactory implements AddressFactoryInterface
             notice: $notice,
             info: $info,
             selectable: $selectable,
+            meta: $meta,
         );
     }
     
@@ -153,6 +156,7 @@ class AddressFactory implements AddressFactoryInterface
             notice: $address->get('notice', ''),
             info: $address->get('info', ''),
             selectable: $address->get('selectable', false),
+            meta: $address->get('meta', []),
         );
     }
 }

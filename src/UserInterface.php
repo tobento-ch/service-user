@@ -124,6 +124,22 @@ interface UserInterface extends Arrayable, AddressAwareInterface
      * @return bool
      */
     public function newsletter(): bool;
+    
+    /**
+     * Returns the meta.
+     *
+     * @return array<array-key, mixed>
+     */
+    public function getMeta(): array;
+    
+    /**
+     * Returns the value by key if exists, otherwise the given default value.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function meta(string $key, mixed $default = null): mixed;
 
     /**
      * Returns the greeting salutation.

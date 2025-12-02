@@ -36,6 +36,7 @@ interface UserFactoryInterface
      * @param string $dateLastVisited
      * @param array $image
      * @param bool $newsletter
+     * @param array $meta
      * @param null|AddressesInterface $addresses
      */
     public function createUser(
@@ -54,6 +55,7 @@ interface UserFactoryInterface
         string $dateLastVisited = '',
         array $image = [],
         bool $newsletter = false,
+        array $meta = [],
         null|AddressesInterface $addresses = null,    
     ): UserInterface;
     

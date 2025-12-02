@@ -48,6 +48,7 @@ interface AddressFactoryInterface
      * @param string $notice
      * @param string $info
      * @param bool $selectable
+     * @param array $meta
      */
     public function createAddress(
         string $key,
@@ -76,7 +77,8 @@ interface AddressFactoryInterface
         string $birthday = '',
         string $notice = '',
         string $info = '',
-        bool $selectable = false,    
+        bool $selectable = false,
+        array $meta = [],
     ): AddressInterface;
     
     /**

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Tobento\Service\User;
 
+use Tobento\Service\Collection\Arr;
 use Tobento\Service\Support\Arrayable;
 
 /**
@@ -60,6 +61,7 @@ class Address implements AddressInterface, Arrayable
      * @param string $notice
      * @param string $info
      * @param bool $selectable
+     * @param array<array-key, mixed> $meta
      */
     public function __construct(
         protected string $key,
@@ -89,6 +91,7 @@ class Address implements AddressInterface, Arrayable
         protected string $notice = '',
         protected string $info = '',
         protected bool $selectable = false,
+        protected array $meta = [],
     ) {}
     
     /**
@@ -806,6 +809,41 @@ class Address implements AddressInterface, Arrayable
     }
     
     /**
+     * Returns the meta.
+     *
+     * @return array<array-key, mixed>
+     */
+    public function getMeta(): array
+    {
+        return $this->meta;
+    }
+    
+    /**
+     * Returns the value by key if exists, otherwise the given default value.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function meta(string $key, mixed $default = null): mixed
+    {
+        return Arr::get($this->meta, $key, $default);
+    }
+    
+    /**
+     * Returns a new instance with the specified meta.
+     *
+     * @param array<array-key, mixed> $meta
+     * @return static
+     */
+    public function withMeta(array $meta): static
+    {
+        $new = clone $this;
+        $new->meta = $meta;
+        return $new;
+    }
+    
+    /**
      * Object to array
      *
      * @return array
@@ -840,7 +878,8 @@ class Address implements AddressInterface, Arrayable
             'notice' => $this->notice(),
             'info' => $this->info(),
             'primary' => $this->isPrimary(),
-            'selectable' => $this->selectable()
+            'selectable' => $this->selectable(),
+            'meta' => $this->getMeta(),
         ];
     }
 }
