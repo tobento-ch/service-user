@@ -1,6 +1,6 @@
 {
     "name": "tobento/service-user",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "type": "library",
     "description": "A user interface for PHP applications.",
     "keywords": [
